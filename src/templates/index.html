@@ -1,0 +1,21 @@
+{% extends "base/theme_base.html" %}
+
+{% load filters %}
+
+{% block page_title %} 首页 {% endblock %}
+
+{% block content_base %}
+	<div id="content">
+		{% for blog in blogs %}
+			<div class="post">
+				<h2 class="title"><a href="#">{{ blog.title }}</a></h2>
+				<p class="meta">{{ blog.author }} 更新于 {{ blog.update_time|date:"Y年n月j日 H:i" }}
+					&nbsp;&bull;&nbsp; <a href="#" class="comments">评论 (64)</a> &nbsp;&bull;&nbsp; <a href="#" class="permalink">阅读全文</a></p>
+				<div class="entry">
+					<p>{{ blog.content|safe|truncatehanzi:600 }}</p>
+				</div>
+			</div>
+		{% endfor %}
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+{% endblock %}
