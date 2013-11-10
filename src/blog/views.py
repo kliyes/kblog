@@ -6,8 +6,38 @@
 #
 from blog.models import Blog
 from core.views import render_and_response
+from django.http import Http404
+from tags.models import Tag
+from django.db.models.query_utils import Q
 
 
 def home_page(request):
-    blogs = Blog.objects.filter(is_draft=False, is_deleted=False)
+    """
+    博客首页
+    """
+    blogs = Blog.objects.filter(is_draft=False)
+    return render_and_response(request, 'index.html', {'blogs': blogs})
+
+
+def detail(request, blog_id):
+    """
+    博客详情
+    """
+    blog = Blog.objects.get_by_id(blog_id)
+    if blog is None or blog.is_draft:
+        raise Http404
+    return render_and_response(request, 'blog/detail.html', {'blog': blog})
+
+
+def search(request):
+    """
+    搜索博客
+    """
+    k = request.REQUEST.get('k')
+    tags = Tag.objects.filter(text__contains=k)
+    blogs = Blog.objects.filter(Q(Q(title__contains=k) |
+                                  Q(content__contains=k) |
+                                  Q(cate__text__contains=k) |
+                                  Q(tags__in=list(tags))), is_draft=False)
+    blogs = sorted(list(set(blogs)), key=lambda x: x.update_time, reverse=True)
     return render_and_response(request, 'index.html', {'blogs': blogs})

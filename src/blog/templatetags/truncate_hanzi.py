@@ -18,6 +18,7 @@ re_alnum = re.compile(ur'[a-zA-Z0-9_\-\u00c0-\u02af\u0370-\u1fff]+', re.U)
 # \u3040-\ufaff: CJK characters
 re_hanzi = re.compile(ur'[\u3040-\ufaff]+', re.U)
 
+
 def truncate_hanzi(s, num):
     s = force_unicode(s)
     length = int(num)
@@ -39,7 +40,7 @@ def truncate_hanzi(s, num):
             hanzi_len += 1
             word_temp = ''
             continue
-        
+
         # Check for hanzi
         if re_hanzi.match(char):
             hanzi_len += 1
@@ -47,6 +48,7 @@ def truncate_hanzi(s, num):
     #hanzi += word_temp
     return hanzi
 truncate_hanzi = allow_lazy(truncate_hanzi, unicode)
+
 
 def demo():
     print truncate_hanzi('截取段落工具，支持English、Γρεεκ等字母语言和CJK汉字。', 6)

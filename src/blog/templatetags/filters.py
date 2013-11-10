@@ -11,6 +11,7 @@ from django.template.defaultfilters import stringfilter
 
 register = Library()
 
+
 @stringfilter
 def truncatehanzi(value, arg):
     """
@@ -22,9 +23,15 @@ def truncatehanzi(value, arg):
     from truncate_hanzi import truncate_hanzi
     try:
         length = int(arg)
-    except ValueError: # Invalid literal for int().
-        return value # Fail silently.
+    except ValueError:  # Invalid literal for int().
+        return value  # Fail silently.
     return truncate_hanzi(value, length)
 truncatehanzi.is_safe = True
 
 register.filter('truncatehanzi', truncatehanzi)
+
+
+def url_target_blank(text):
+    return text.replace('<a ', '<a target="_blank" ')
+url_target_blank = register.filter(url_target_blank)
+url_target_blank.is_safe = True

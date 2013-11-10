@@ -224,6 +224,11 @@ img.aligncenter {
 	font-size: 14px;
 }
 
+#content img {
+    max-width: 600px;
+}
+
+
 .post {
 	padding-top: 20px;
 	padding-bottom: 10px;
@@ -253,7 +258,9 @@ img.aligncenter {
 	text-align: justify;
 	margin-bottom: 25px;
 	padding: 10px 0px 0px 0px;
+    word-break: break-all;
 }
+
 
 .links {
 	display: block;
@@ -312,6 +319,10 @@ img.aligncenter {
 	letter-spacing: -1px;
 	font-size: 24px;
 	color: #D71D3E;
+}
+
+#sidebar img {
+    padding: 0px 20px 20px 20px;
 }
 
 #sidebar p {

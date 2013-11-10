@@ -1,0 +1,21 @@
+{% extends "base/theme_base.html" %}
+
+{% load filters %}
+
+{% block page_title %} {{ blog.title }} {% endblock %}
+
+{% block content_base %}
+    <div id="content">
+        <div class="post">
+            <h2 class="title"><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></h2>
+                <p class="meta">{{ blog.author }} 更新于 {{ blog.update_time|date:"Y年n月j日 H:i" }}
+                    &nbsp;&bull;&nbsp; <a href="#" class="comments">评论 (64)</a> &nbsp;&bull;&nbsp; <a href="{% url 'home' %}" class="permalink">返回首页</a></p>
+            <div class="entry">
+                <p>{{ blog.content|safe }}</p>
+                {% if blog.source %}
+                <p>参考：{{ blog.source|urlize|url_target_blank }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

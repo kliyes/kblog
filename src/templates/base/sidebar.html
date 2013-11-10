@@ -2,28 +2,23 @@
 	<ul> 
 		<li>
 			<img src="{{STATIC_URL}}base/img/avatar.jpg" />
-			<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>
+			<p>屌丝, 苦逼程序猿。</p>
+			<p>没有什么能永垂不朽, 只希望在有限的生命里做好自己</p>
 		</li>
 		<li>
 			<h2>Categories</h2>
 			<ul>
-				<li><a href="#">Aliquam libero</a></li>
-				<li><a href="#">Consectetuer adipiscing elit</a></li>
-				<li><a href="#">Metus aliquam pellentesque</a></li>
-				<li><a href="#">Suspendisse iaculis mauris</a></li>
-				<li><a href="#">Urnanet non molestie semper</a></li>
-				<li><a href="#">Proin gravida orci porttitor</a></li>
+			    {% for cate in cates %}
+				    <li><a href="#">{{ cate.text }} ({{ cate.used_count }}) </a></li>
+				{% endfor %}
 			</ul>
 		</li>
 		<li>
-			<h2>Blogroll</h2>
+			<h2>Tags</h2>
 			<ul>
-				<li><a href="#">Aliquam libero</a></li>
-				<li><a href="#">Consectetuer adipiscing elit</a></li>
-				<li><a href="#">Metus aliquam pellentesque</a></li>
-				<li><a href="#">Suspendisse iaculis mauris</a></li>
-				<li><a href="#">Urnanet non molestie semper</a></li>
-				<li><a href="#">Proin gravida orci porttitor</a></li>
+                {% for tag in tags %}
+                   <li><a href="#">{{ tag.text }} ({{ tag.used_count }}) </a></li>
+                {% endfor %}
 			</ul>
 		</li>
 	</ul>

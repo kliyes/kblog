@@ -13,7 +13,7 @@ class BaseManager(Manager):
 
     def get_by_id(self, id):
         try:
-            return self.get(id)
+            return self.get(id=id)
         except Exception, e:
             print e
             return None

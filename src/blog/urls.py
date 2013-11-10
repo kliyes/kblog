@@ -4,3 +4,11 @@
 # Created on 2013-11-6, by Tom
 #
 #
+from django.conf.urls import patterns, url
+
+
+urlpatterns = patterns('',
+    # Examples:
+    url(r'^(\d+)$', 'blog.views.detail', name='blog_detail'),
+    url(r'^search$', 'blog.views.search', name='blog_search'),
+)

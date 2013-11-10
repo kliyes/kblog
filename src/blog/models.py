@@ -19,7 +19,6 @@ class Blog(BaseModel):
                              blank=True)
     source = models.CharField(u'出处', max_length=1024, null=True, blank=True)
     is_draft = models.BooleanField(u'是否为草稿', default=True)
-    is_deleted = models.BooleanField(u'是否已删除', default=False)
     update_time = models.DateTimeField(u'更新时间', auto_now=True)
 
     def __unicode__(self):

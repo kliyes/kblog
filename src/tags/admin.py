@@ -8,5 +8,20 @@ from django.contrib import admin
 from tags.models import Tag, Category
 
 
-admin.site.register(Tag)
-admin.site.register(Category)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['text', 'used_count']
+
+    def used_count(self, obj):
+        return obj.used_count()
+    used_count.short_description = u'标签被引用次数'
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['text', 'used_count']
+
+    def used_count(self, obj):
+        return obj.used_count()
+    used_count.short_description = u'分类下博客数量'
+
+admin.site.register(Tag, TagAdmin)
+admin.site.register(Category, CategoryAdmin)
