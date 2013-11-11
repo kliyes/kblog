@@ -9,6 +9,12 @@
 				<h2 class="title"><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></h2>
 				<p class="meta">{{ blog.author }} 更新于 {{ blog.update_time|date:"Y年n月j日 H:i" }}
 					&nbsp;&bull;&nbsp; <a href="#" class="comments">评论 (64)</a> &nbsp;&bull;&nbsp; <a href="{% url 'blog_detail' blog.id %}" class="permalink">阅读全文</a></p>
+				<p class="meta">
+					<a href="##">{{ blog.cate.text }}</a> &nbsp;&bull;&nbsp; 
+					{% for tag in blog.tags.all %}
+						<a href="##">{{ tag.text }}</a>
+					{% endfor %}
+				</p>
 				<div class="entry">
 					<p>{{ blog.content|truncatewords_html:20|safe }}</p>
 				</div>

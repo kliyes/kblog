@@ -1,5 +1,9 @@
+#coding=utf-8
 # Django settings for kliyes_blog project.
 import os
+
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -118,19 +122,15 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = [
-    "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
+TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     "django.core.context_processors.request",
-    "django.contrib.messages.context_processors.messages",
     "staticfiles.context_processors.static",
 
     "blog.context_processors.tags_and_cates",
-]
+)
 
 INSTALLED_APPS = (
+    'suit',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -205,3 +205,6 @@ CKEDITOR_CONFIGS = {
 }
 
 CKEDITOR_UPLOAD_PATH = ''
+
+APP_LABEL_LOCAL = {'blog': u'博客', 'sites': u'站点', 'tags': u'标签和分类',
+                   'auth': u'用户和组'}

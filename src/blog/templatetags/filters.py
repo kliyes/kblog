@@ -8,6 +8,7 @@
 
 from django.template import Library
 from django.template.defaultfilters import stringfilter
+import settings
 
 register = Library()
 
@@ -35,3 +36,11 @@ def url_target_blank(text):
     return text.replace('<a ', '<a target="_blank" ')
 url_target_blank = register.filter(url_target_blank)
 url_target_blank.is_safe = True
+
+
+def trans_app_label(app_label):
+    """
+    translate app label to Chinese
+    """
+    return settings.APP_LABEL_LOCAL.get(app_label.lower(), app_label)
+trans_app_label = register.filter(trans_app_label)
