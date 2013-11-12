@@ -198,7 +198,7 @@ CKEDITOR_CONFIGS = {
             ['TextColor', 'BGColor'],
             ['Maximize', 'ShowBlocks', '-', 'About', 'syntaxhighlight']
         ],
-        'width': 1000,
+        'width': 670,
         'height': 600,
         'toolbarCanCollapse': False,
     },
