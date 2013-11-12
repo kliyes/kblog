@@ -18,11 +18,19 @@
 	function changeClock()
 	{
 		var d = new Date();
-		sec = d.getSeconds(2)
-		if (sec<10){
-			sec="0" + sec
+		hour = d.getHours()
+		sec = d.getSeconds()
+		min = d.getMinutes()
+		if (hour<10){
+			hour="0" + hour
 		}
-		document.getElementById("clock").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + sec;
+		if (min<10){
+            min="0" + min
+        }
+        if (sec<10){
+            sec="0" + sec
+        }
+		document.getElementById("clock").innerHTML = hour + ":" + min + ":" + sec;
 	}
 	window.setInterval(changeClock, 1000);
   </script>
