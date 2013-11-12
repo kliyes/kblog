@@ -11,6 +11,21 @@
   <script src="{% static 'suit/js/jquery-1.8.3.min.js' %}"></script>
   <script type="text/javascript">var Suit = { $: $.noConflict() }; if (!$) $ = Suit.$; </script>
   <script src="{% static 'suit/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script>
+  window.onload = function(){
+  	changeClock();
+  }
+	function changeClock()
+	{
+		var d = new Date();
+		sec = d.getSeconds(2)
+		if (sec<10){
+			sec="0" + sec
+		}
+		document.getElementById("clock").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + sec;
+	}
+	window.setInterval(changeClock, 1000);
+  </script>
   {% if 'SHOW_REQUIRED_ASTERISK'|suit_conf %}
   <style type="text/css">.required:after { content: '*'; margin: 0 0 0 5px; position: absolute; color: #ccc;}</style>
   {% endif %}
@@ -44,7 +59,7 @@
               </div>
               <div class="header-column">
                 <span class="date"> {% suit_date %}</span><br>
-                <span class="time" id="clock">{% suit_time %}</span>
+                <span class="time" id="clock"></span>
               </div>
             </div>
             {% endblock %}

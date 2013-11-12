@@ -11,7 +11,7 @@ def default_config():
         # configurable
         'ADMIN_NAME': 'KBLOG',
         'ADMIN_LOGIN_TITLE': u'KBLOG管理登录',
-        'HEADER_DATE_FORMAT': 'Y/m/d',
+        'HEADER_DATE_FORMAT': 'Y-m-d',
         'HEADER_TIME_FORMAT': 'H:i',
 
         # form
