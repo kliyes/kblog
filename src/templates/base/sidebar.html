@@ -1,7 +1,9 @@
 <div id="sidebar">
 	<ul> 
 		<li>
-			<img src="{{STATIC_URL}}base/img/avatar.jpg" />
+			<div id="id_avatar" class="header-container">
+				<img data-src="{{STATIC_URL}}base/img/qrcode.png" src="{{STATIC_URL}}base/img/avatar.jpg" />
+			</div>
 			<p>屌丝, 苦逼程序猿。</p>
 			<p>没有什么能永垂不朽, 只希望在有限的生命里做好自己</p>
 		</li>
@@ -9,7 +11,7 @@
 			<h2>Categories</h2>
 			<ul>
 			    {% for cate in cates %}
-				    <li><a href="#">{{ cate.text }} ({{ cate.used_count }}) </a></li>
+				    <li><a href="{% url 'blog_filter' 'cate' cate.id %}">{{ cate.text }} ({{ cate.used_count }}) </a></li>
 				{% endfor %}
 			</ul>
 		</li>
@@ -17,7 +19,7 @@
 			<h2>Tags</h2>
 			<ul>
                 {% for tag in tags %}
-                   <li><a href="#">{{ tag.text }} ({{ tag.used_count }}) </a></li>
+                   <li><a href="{% url 'blog_filter' 'tag' tag.id %}">{{ tag.text }} ({{ tag.used_count }}) </a></li>
                 {% endfor %}
 			</ul>
 		</li>
