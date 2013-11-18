@@ -1,0 +1,12 @@
+<div>
+	<h3>评论 ({{ blog.count_comments }})</h3>
+	{% for comment in blog.get_comments %}
+		{% if comment.name %}
+			{{ comment.name }}
+		{% else %}
+			{{ comment.contact }}
+		{% endif %}
+		说：
+		{{ comment.text }}
+	{% endfor %}
+</div>

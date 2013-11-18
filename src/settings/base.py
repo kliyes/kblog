@@ -142,9 +142,12 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'ckeditor',
+    'captcha',
 
+    'core',
     'blog',
     'tags',
+    'comment',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -177,7 +180,7 @@ LOGGING = {
 }
 
 CKEDITOR_CONFIGS = {
-    'default': {
+    'admin': {
         'toolbar': [
             ['Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
             ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-',
@@ -202,9 +205,13 @@ CKEDITOR_CONFIGS = {
         'height': 600,
         'toolbarCanCollapse': False,
     },
+    'comment': {
+        'toolbar': [['Smiley'],
+        ]
+    }
 }
 
 CKEDITOR_UPLOAD_PATH = ''
 
 APP_LABEL_LOCAL = {'blog': u'博客', 'sites': u'站点', 'tags': u'标签和分类',
-                   'auth': u'用户和组'}
+                   'auth': u'用户和组', 'comment': u'评论'}

@@ -12,7 +12,7 @@ from ckeditor.fields import RichTextField
 class Blog(BaseModel):
     author = models.CharField(u'作者', max_length=32, default=u'Tom')
     title = models.CharField(u'标题', max_length=512)
-    content = RichTextField(u'内容')
+    content = RichTextField(u'内容', config_name='admin')
     tags = models.ManyToManyField('tags.Tag', verbose_name=u'标签', null=True,
                                   blank=True)
     cate = models.ForeignKey('tags.Category', verbose_name=u'分类', null=True,
@@ -28,3 +28,15 @@ class Blog(BaseModel):
         verbose_name = u'博客'
         verbose_name_plural = u'博客'
         ordering = ('-update_time',)
+
+    def count_comments(self):
+        """
+        获取某博客的评论数量
+        """
+        return self.comment_set.count()
+
+    def get_comments(self):
+        """
+        获取某博客的评论列表
+        """
+        return self.comment_set.all()
