@@ -210,7 +210,6 @@ CKEDITOR_CONFIGS = {
 
 CKEDITOR_UPLOAD_PATH = ''
 
-CAPTCHA_FONT_SIZE = 30
 CAPTCHA_LETTER_ROTATION = None
 CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_dots',)

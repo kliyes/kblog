@@ -27,3 +27,15 @@
         {% include 'comment/cmt_form.html' %}
     </div>
 {% endblock %}
+
+{% block single_js %}
+<script type="text/javascript">  
+    $('.captcha').click(function(){ //点击图片刷新  
+        $.get("{% url 'refresh_captcha' %}", function(result){  
+            $('.captcha').attr("src", result);  
+            $('#id_captcha_0').attr("value", result.split('/')[-1]);  
+        });  
+    return false;  
+});  
+</script>  
+{% endblock %}
