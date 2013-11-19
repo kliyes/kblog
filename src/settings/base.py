@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'widget_tweaks',
     'ckeditor',
     'captcha',
 
@@ -180,7 +181,7 @@ LOGGING = {
 }
 
 CKEDITOR_CONFIGS = {
-    'admin': {
+    'default': {
         'toolbar': [
             ['Source', '-', 'Save', 'NewPage', 'Preview', '-', 'Templates'],
             ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-',
@@ -205,13 +206,14 @@ CKEDITOR_CONFIGS = {
         'height': 600,
         'toolbarCanCollapse': False,
     },
-    'comment': {
-        'toolbar': [['Smiley'],
-        ]
-    }
 }
 
 CKEDITOR_UPLOAD_PATH = ''
+
+CAPTCHA_FONT_SIZE = 30
+CAPTCHA_LETTER_ROTATION = None
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_dots',)
 
 APP_LABEL_LOCAL = {'blog': u'博客', 'sites': u'站点', 'tags': u'标签和分类',
                    'auth': u'用户和组', 'comment': u'评论'}

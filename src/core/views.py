@@ -10,3 +10,11 @@ from django.template.context import RequestContext
 
 def render_and_response(request, t, data={}):
     return render_to_response(t, RequestContext(request, data))
+
+
+def get_ip(request):
+    if 'HTTP_X_FORWARDED_FOR' in request.META.keys():
+        ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip = request.META['REMOTE_ADDR']
+    return ip

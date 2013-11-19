@@ -6,14 +6,13 @@
 #
 from core.models import BaseModel
 from django.db import models
-from ckeditor.fields import RichTextField
 
 
 class Comment(BaseModel):
     blog = models.ForeignKey('blog.Blog', verbose_name=u'博客')
     contact = models.CharField(u'联系方式', max_length=64)
     name = models.CharField(u'称呼', max_length=32, null=True, blank=True)
-    text = RichTextField(u'评论内容', config_name='comment')
+    text = models.TextField(u'评论内容')
     ip = models.IPAddressField(u'评论者IP', null=True, blank=True)
 
     def __unicode__(self):

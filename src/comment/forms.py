@@ -10,7 +10,13 @@ from comment.models import Comment
 
 
 class CommentForm(forms.ModelForm):
-    captcha = CaptchaField()
+    captcha = CaptchaField(label=u'验证码')
 
     class Meta:
         model = Comment
+        exclude = ('blog', 'ip')
+
+    def post(self, blog):
+        data = self.cleaned_data
+        return Comment.objects.create(blog=blog, contact=data['contact'],
+                                      name=data['name'], text=data['text'])

@@ -9,6 +9,7 @@ from core.views import render_and_response
 from django.http import Http404
 from tags.models import Tag, Category
 from django.db.models.query_utils import Q
+from comment.forms import CommentForm
 
 
 def home_page(request):
@@ -26,7 +27,8 @@ def detail(request, blog_id):
     blog = Blog.objects.get_by_id(blog_id)
     if blog is None or blog.is_draft:
         raise Http404
-    return render_and_response(request, 'blog/detail.html', {'blog': blog})
+    return render_and_response(request, 'blog/detail.html',
+                               {'blog': blog, 'form': CommentForm()})
 
 
 def search(request):
