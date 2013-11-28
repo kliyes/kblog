@@ -1,6 +1,6 @@
 {% load widget_tweaks %}
 
-<div>
+<div id="cmt">
 	<form action="{% url 'post_comment' blog.id %}" method='post'>
 		{% csrf_token %}
 		{{ form.contact|attr:"placeholder:您的联系方式" }}
@@ -10,7 +10,7 @@
 		{{ form.text|attr:"placeholder:您想说什么？" }}<br />
 		{{ form.errors.text }}
 		{{ form.captcha|attr:"placeholder:计算结果" }}
-		{{ form.errors.captcha }}<br />
-		<a href="##" onclick="submit()">提交</a>
+		{{ form.errors.captcha }}
+		<a onclick="submit()">提交</a>
 	</form>
 </div>

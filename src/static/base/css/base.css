@@ -153,8 +153,54 @@ img.aligncenter {
 	color: #7F7F81;
 }
 
+#cmt input {
+	width: 195px;
+	padding: 6px 10px;
+	margin: 15px 0px 0px 0px;
+	border-style: solid;
+	border-color: #808080;
+	border-width: 1px;
+	background: #FFFFFF;
+	text-transform: lowercase;
+	font: normal 11px Arial, Helvetica, sans-serif;
+	color: #7F7F81;
+}
+
+#cmt textarea {
+	width: 400px;
+	padding: 6px 10px;
+	margin: 15px 0px 0px 0px;
+	border-style: solid;
+	border-color: #808080;
+	border-width: 1px;
+	background: #FFFFFF;
+	font: normal 11px Arial, Helvetica, sans-serif;
+}
+
+#cmt a {
+	cursor: pointer;
+	display: block;
+	margin-top: 15px;
+}
+
+#cmt #id_captcha_1 {
+	width: 50px;
+}
+
 #search-submit {
 	display: none;
+}
+
+.captcha {
+    margin: 15px 10px 0px 0px;
+    display: block;
+    float: left;
+	width: 60px;
+	height: 27px;
+	border-style: solid;
+	border-color: #808080;
+	border-width: 1px;
+	cursor: pointer;
 }
 
 /* Menu */

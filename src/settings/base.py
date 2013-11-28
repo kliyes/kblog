@@ -212,7 +212,7 @@ CKEDITOR_UPLOAD_PATH = ''
 
 CAPTCHA_LETTER_ROTATION = None
 CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
-CAPTCHA_NOISE_FUNCTIONS = ('captcha.helpers.noise_dots',)
+CAPTCHA_NOISE_FUNCTIONS = None
 
 APP_LABEL_LOCAL = {'blog': u'博客', 'sites': u'站点', 'tags': u'标签和分类',
                    'auth': u'用户和组', 'comment': u'评论'}

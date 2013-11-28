@@ -10,7 +10,15 @@ from comment.models import Comment
 
 
 class CommentForm(forms.ModelForm):
-    captcha = CaptchaField(label=u'验证码')
+    captcha = CaptchaField(label=u'验证码',
+                           error_messages={'invalid': u'验证码错误',
+                                           'required': u'请输入验证码'})
+
+    def __init__(self, *args, **kwargs):
+        super(CommentForm, self).__init__(*args, **kwargs)
+        self.fields['contact'].error_messages = {
+            'required': u'请输入您的联系方式, 邮箱、QQ等均可(仅为方便交流)'}
+        self.fields['text'].error_messages = {'required': u'请输入您想评论的内容'}
 
     class Meta:
         model = Comment
