@@ -30,6 +30,10 @@
 
 {% block single_js %}
 <script type="text/javascript">  
+	function reply(t){
+		$("#id_text").html('回复 '+t+'： ');
+	}
+
     $('.captcha').click(function(){ //点击图片刷新  
         $.get("{% url 'refresh_captcha' %}", function(result){  
             $('.captcha').attr("src", result);  

@@ -12,7 +12,7 @@ from ckeditor.fields import RichTextField
 class Blog(BaseModel):
     author = models.CharField(u'作者', max_length=32, default=u'Tom')
     title = models.CharField(u'标题', max_length=512)
-    content = RichTextField(u'内容', config_name='admin')
+    content = RichTextField(u'内容')
     tags = models.ManyToManyField('tags.Tag', verbose_name=u'标签', null=True,
                                   blank=True)
     cate = models.ForeignKey('tags.Category', verbose_name=u'分类', null=True,
