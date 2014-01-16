@@ -13,12 +13,49 @@ from comment.forms import CommentForm
 from utils import pages
 
 
+def _get_data_list(paging_key, k=0):
+    if paging_key == 'all':
+        return Blog.objects.filter(is_draft=False)
+    elif paging_key == 'cate':
+        cate = Category.objects.get_by_id(k)
+        if cate:
+            return Blog.objects.filter(cate=cate)
+    elif paging_key == 'tag':
+        tag = Tag.objects.get_by_id(k)
+        if tag:
+            return tag.blog_set.filter(is_draft=False)
+    elif paging_key == 'search':
+        tags = Tag.objects.filter(text__contains=k)
+        return Blog.objects.filter(Q(Q(title__contains=k) |
+            Q(content__contains=k) |
+            Q(cate__text__contains=k) |
+            Q(tags__in=tags)), is_draft=False).distinct().order_by('-update_time')
+
+    return []
+
+
+def pager(request, sk, k=0):
+    """
+    分页器
+    """
+    page = request.REQUEST.get('p')
+    if not page or not page.isdigit():
+        page = 1
+    page = int(page)
+    paging = pages.get_paging(request, '%s_%s' % (sk, k))
+    if not paging:
+        paging = pages.set_paging(request, '%s_%s' % (sk, k),
+                                  _get_data_list(sk, k))
+    ctx = paging.result(page)
+    ctx.update({'sk': sk, 'k': k})
+    return ctx
+
+
 def home_page(request):
     """
     博客首页
     """
-    return render_and_response(request, 'index.html', pager(request,
-        get_data_list('blogs'), 'blogs'))
+    return render_and_response(request, 'index.html', pager(request, 'all'))
 
 
 def detail(request, blog_id):
@@ -36,14 +73,11 @@ def search(request):
     """
     搜索博客
     """
-    k = request.REQUEST.get('k')
-    blogs = get_data_list('name', k)
-    blogs = sorted(list(set(blogs)), key=lambda x: x.update_time, reverse=True)
-#    return render_and_response(request, 'index.html', {'blogs': blogs})
-    return render_and_response(request, 'index.html', pager(request, blogs, 'name'))
+    return render_and_response(request, 'index.html',
+                               pager(request, 'search', request.REQUEST.get('k')))
 
 
-def filter(request, by, id):
+def filter_by(request, by, id):
     """
     按标签或分类筛选博客
     """
@@ -51,46 +85,13 @@ def filter(request, by, id):
         tag = Tag.objects.get_by_id(id)
         if tag is None:
             raise Http404
-        blogs = tag.blog_set.filter(is_draft=False)
+        return render_and_response(request, 'index.html', pager(request, 'tag',
+                                                                id))
     elif by == 'cate':
         cate = Category.objects.get_by_id(id)
         if cate is None:
             raise Http404
-        blogs = cate.blog_set.filter(is_draft=False)
+        return render_and_response(request, 'index.html', pager(request, 'cate',
+                                                                id))
     else:
         raise Http404
-    return render_and_response(request, 'index.html', {'blogs': blogs})
-
-
-def get_data_list(paging_key, k=0):
-    if paging_key == 'blogs':
-        return Blog.objects.filter(is_draft=False)
-    elif paging_key == 'cate':
-        cate = Category.objects.get_by_id(k)
-        if cate:
-            return cate.blog_set.filter(is_draft=False)
-    elif paging_key == 'tag':
-        tag = Tag.objects.get_by_id(k)
-        if tag:
-            return tag.blog_set.filter(is_draft=False)
-    elif paging_key == 'name':
-        tags = Tag.objects.filter(text__contains=k)
-        return Blog.objects.filter(Q(Q(title__contains=k) |
-                                     Q(content__contains=k) |
-                                     Q(cate__text__contains=k) |
-                                     Q(tags__in=tags)), is_draft=False)
-    return []
-
-
-def pager(request, data_list, paging_key):
-    """
-    分页
-    """
-    page = request.REQUEST.get('p')
-    if not page or not page.isdigit():
-        page = 1
-    page = int(page)
-    paging = pages.get_paging(request, paging_key)
-    if not paging:
-        paging = pages.set_paging(request, paging_key, data_list)
-    return paging.result(page)

@@ -29,5 +29,4 @@ var changeImg = function(){
 				"margin-left":0				
 			},300)
 		});
-	});
-}
+	});}

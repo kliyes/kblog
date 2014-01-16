@@ -4,23 +4,8 @@
 
 {% block content_base %}
 	<div id="content">
-		{% for blog in page_items.object_list %}
-			<div class="post">
-				<h2 class="title"><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></h2>
-				<p class="meta">{{ blog.author }} 更新于 {{ blog.update_time|date:"Y年n月j日 H:i" }}
-					&nbsp;&bull;&nbsp; <a href="#" class="comments">评论 ({{ blog.count_comments }})</a> &nbsp;&bull;&nbsp; <a href="{% url 'blog_detail' blog.id %}" class="permalink">阅读全文</a></p>
-				<p class="meta">
-					<a href="{% url 'blog_filter' 'cate' blog.cate_id %}">{{ blog.cate.text }}</a> &nbsp;&bull;&nbsp; 
-					{% for tag in blog.tags.all %}
-						<a href="{% url 'blog_filter' 'tag' tag.id %}">{{ tag.text }}</a>
-					{% endfor %}
-				</p>
-				<div class="entry">
-					<p>{{ blog.content|truncatewords_html:20|safe }}</p>
-				</div>
-			</div>
-		{% endfor %}
+		{% include "blog/list.html" %}
 		<div style="clear: both;">&nbsp;</div>
-    	{% include "base/paginator.html" %}
+		{% include "base/paginator.html" %}
 	</div>
 {% endblock %}

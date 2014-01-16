@@ -1,12 +1,29 @@
 <div>
-    <div>
-        {% ifnotequal page_items.paginator.num_pages 1 %}
-            {% if page_items.has_previous %}
-            <li><a href="javascript:void(0);" id="pre" rel="{{pageItems.previous_page_number}}">&laquo;</a></li>
-              {% endif %}
-             {% if page_items.has_next %}
-             <li><a href="javascript:void(0);" id="next" rel="{{pageItems.next_page_number}}">&raquo;</a></li>
-             {% endif %}
-        {% endifnotequal %}      
-    </div>
+	<div style="float: right">
+		{% ifnotequal page_items.paginator.num_pages 1 %}
+			{% if page_items.has_previous %}
+				{% if sk == 'all' %}
+					<a href="{% url 'home' %}?p={{ page_items.previous_page_number }}">
+				{% elif sk == 'search' %}
+					<a href="{% url 'blog_search' %}?k={{ k }}&p={{ page_items.previous_page_number }}">
+				{% else %}
+					<a href="{% url 'blog_filter' sk k %}?p={{ page_items.previous_page_number }}">
+				{% endif %}
+					上一页
+				</a>
+			{% endif %}
+			{% if page_items.has_next %}
+				{% if sk == 'all' %}
+					<a href="{% url 'home' %}?p={{ page_items.next_page_number }}">
+				{% elif sk == 'search' %}
+					<a href="{% url 'blog_search' %}?k={{ k }}&p={{ page_items.next_page_number }}">
+				{% else %}
+					<a href="{% url 'blog_filter' sk k %}?p={{ page_items.next_page_number }}">
+				{% endif %}
+					下一页
+				</a>
+			{% endif %}
+		{% endifnotequal %}      
+	</div>
+	<div style="clear: both"></div>
 </div>

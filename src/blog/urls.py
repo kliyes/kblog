@@ -11,5 +11,5 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^(\d+)$', 'blog.views.detail', name='blog_detail'),
     url(r'^search$', 'blog.views.search', name='blog_search'),
-    url(r'^(\w+)/(\d+)$', 'blog.views.filter', name='blog_filter'),
+    url(r'^(\w+)/(\d+)$', 'blog.views.filter_by', name='blog_filter'),
 )

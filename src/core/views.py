@@ -6,6 +6,8 @@
 #
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
+from django.contrib.sessions.models import Session
+from django.http.response import HttpResponse
 
 
 def render_and_response(request, t, data={}):
@@ -18,3 +20,8 @@ def get_ip(request):
     else:
         ip = request.META['REMOTE_ADDR']
     return ip
+
+
+def clear_session(request):
+    Session.objects.all().delete()
+    return HttpResponse('session clear!')
