@@ -1,0 +1,12 @@
+<div>
+    <div>
+        {% ifnotequal page_items.paginator.num_pages 1 %}
+            {% if page_items.has_previous %}
+            <li><a href="javascript:void(0);" id="pre" rel="{{pageItems.previous_page_number}}">&laquo;</a></li>
+              {% endif %}
+             {% if page_items.has_next %}
+             <li><a href="javascript:void(0);" id="next" rel="{{pageItems.next_page_number}}">&raquo;</a></li>
+             {% endif %}
+        {% endifnotequal %}      
+    </div>
+</div>

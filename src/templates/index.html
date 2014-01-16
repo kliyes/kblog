@@ -4,7 +4,7 @@
 
 {% block content_base %}
 	<div id="content">
-		{% for blog in blogs %}
+		{% for blog in page_items.object_list %}
 			<div class="post">
 				<h2 class="title"><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></h2>
 				<p class="meta">{{ blog.author }} 更新于 {{ blog.update_time|date:"Y年n月j日 H:i" }}
@@ -21,5 +21,6 @@
 			</div>
 		{% endfor %}
 		<div style="clear: both;">&nbsp;</div>
+    	{% include "base/paginator.html" %}
 	</div>
 {% endblock %}
