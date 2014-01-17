@@ -25,7 +25,7 @@ def comment(request, blog_id):
             cmt = form.post(blog)
             cmt.ip = get_ip(request)
             cmt.save()
-            return HttpResponseRedirect('/blog/%s' % blog.id)
+            return HttpResponseRedirect('/blog/%s#cmt' % blog.id)
     return render_and_response(request, 'blog/detail.html',
                                {'blog': blog, 'form': form})
 

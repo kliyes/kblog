@@ -26,9 +26,11 @@ Email       : jingyang.tom@qq.com
 
 <body>
 	<div id="wrapper">
-		{% block header_base %}
-			{% block header %} {% include "base/header.html" %} {% endblock %}
-		{% endblock %}
+		<div class="header">
+			{% block header_base %}
+				{% block header %} {% include "base/header.html" %} {% endblock %}
+			{% endblock %}
+		</div>
 
 		<div id="page">
 			<div id="page-bgtop">
@@ -53,6 +55,22 @@ Email       : jingyang.tom@qq.com
 	<script src="{{STATIC_URL}}syntaxhighlighter/js/shAutoloader.js" type="text/javascript"></script>
 	<script src="{{STATIC_URL}}base/js/syntaxhighlighter_autoloads.js" type="text/javascript"></script>
 	<script src="{{STATIC_URL}}base/js/custom.js" type="text/javascript"></script>
+	<script>
+		$(function () {   
+			if ($(".sidebar").length > 0) {   
+				var offset = $(".sidebar").offset();   
+				$(window).scroll(function () {   
+					var scrollTop = $(window).scrollTop();   
+					if (offset.top < scrollTop){
+						$(".sidebar").css("top",10).addClass("fixed");
+					}   
+					else{
+						$(".sidebar").removeClass("fixed");
+					}   
+				});   
+			}  
+		});
+	</script>
 	{% endblock %}
 	{% block single_js %}{% endblock %}
 </body>

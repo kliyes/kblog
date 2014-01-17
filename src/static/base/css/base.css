@@ -8,7 +8,6 @@ Released for free under a Creative Commons Attribution 2.5 License
 body {
 	margin: 0;
 	padding: 0;
-	background: #ffffff url(../img/img02.gif) repeat-x left top;
 	font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	color: #000;
@@ -74,6 +73,10 @@ img.aligncenter {
 }
 
 /* Header */
+
+.header {
+	background-color: #aa001f;
+}
 
 #header {
 	width: 1000px;
@@ -156,7 +159,7 @@ img.aligncenter {
 #cmt input {
 	width: 195px;
 	padding: 6px 10px;
-	margin: 15px 0px 0px 0px;
+	/*margin: 15px 0px 0px 0px;*/
 	border-style: solid;
 	border-color: #808080;
 	border-width: 1px;
@@ -164,6 +167,10 @@ img.aligncenter {
 	text-transform: lowercase;
 	font: normal 11px Arial, Helvetica, sans-serif;
 	color: #7F7F81;
+}
+#id_captcha_1{
+	/*margin-top: 15px;*/
+	margin-top: -1px;
 }
 
 #cmt textarea {
@@ -192,7 +199,7 @@ img.aligncenter {
 }
 
 .captcha {
-    margin: 15px 10px 0px 0px;
+    margin: 0px 10px 0px 0px;
     display: block;
     float: left;
 	width: 60px;
@@ -446,3 +453,16 @@ img.aligncenter {
 /*	position: absolute;*/
 /*	margin-left: -20px;*/
 }
+
+.fixed{position:fixed;}
+
+.errorlist{
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+}
+
+.space{
+	height:5px;
+}
+

@@ -65,8 +65,11 @@ def detail(request, blog_id):
     blog = Blog.objects.get_by_id(blog_id)
     if blog is None or blog.is_draft:
         raise Http404
+    init = None
+    if request.user.is_superuser:
+        init = {'contact': 'tom@kliyes.com', 'name': 'tom kliyes'}
     return render_and_response(request, 'blog/detail.html',
-                               {'blog': blog, 'form': CommentForm()})
+                               {'blog': blog, 'form': CommentForm(initial=init)})
 
 
 def search(request):

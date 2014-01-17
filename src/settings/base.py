@@ -127,6 +127,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     "staticfiles.context_processors.static",
 
     "blog.context_processors.tags_and_cates",
+    "blog.context_processors.signature_and_words",
 )
 
 INSTALLED_APPS = (
@@ -216,3 +217,6 @@ CAPTCHA_NOISE_FUNCTIONS = None
 
 APP_LABEL_LOCAL = {'blog': u'博客', 'sites': u'站点', 'tags': u'标签和分类',
                    'auth': u'用户和组', 'comment': u'评论'}
+
+SIG = u"今天天气不错, 适合运动!"
+WORDS = u"做有意义的事情, 让生活过的更充实。"
