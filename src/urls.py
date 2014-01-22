@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^$', 'blog.views.home_page', name='home'),
     url(r'^refresh_captcha$', 'comment.views.refresh_captcha', name='refresh_captcha'),
 
-    url(r'^clear_session', 'core.views.clear_session', name='refresh_captcha'),
+    url(r'^clear_session', 'core.views.clear_session', name='clear_session'),
 
     url(r'^blog/', include('blog.urls')),
     url(r'^comment/', include('comment.urls')),
