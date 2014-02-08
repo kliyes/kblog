@@ -10,8 +10,13 @@ TEMPLATE_DEBUG = DEBUG
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
 
+ALLOWED_HOSTS = [
+    'www.kliyes.com',
+    'kliyes.com',
+]
+
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('Tom', 'tom@kliyes.com'),
 )
 
 MANAGERS = ADMINS
