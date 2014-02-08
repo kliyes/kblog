@@ -6,6 +6,7 @@ Created on 2013-11-10
 '''
 from tags.models import Category, Tag
 import settings
+from blog.models import Links
 
 
 def tags_and_cates(request):
@@ -14,3 +15,7 @@ def tags_and_cates(request):
 
 def signature_and_words(request):
     return {'sig': settings.SIG, 'words': settings.WORDS}
+
+
+def links(request):
+    return {'links': Links.objects.filter(available=True)}

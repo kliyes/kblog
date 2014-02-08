@@ -7,6 +7,7 @@
 from core.models import BaseModel
 from django.db import models
 from ckeditor.fields import RichTextField
+from core.managers import BaseManager
 
 
 class Blog(BaseModel):
@@ -40,3 +41,23 @@ class Blog(BaseModel):
         获取某博客的评论列表
         """
         return self.comment_set.all()
+
+
+class Links(BaseModel):
+    url = models.URLField(u'链接地址')
+    alias = models.CharField(u'名称', max_length=16)
+    available = models.BooleanField(u'是否可用', default=True)
+
+    class Meta:
+        verbose_name = u'友情链接'
+        verbose_name_plural = u'友情链接'
+
+
+class ISays(BaseModel):
+    sig = models.CharField(u'签名', max_length=256)
+    words = models.CharField(u'说说', max_length=1024)
+
+    class Meta:
+        verbose_name = u'个性'
+        verbose_name_plural = u'个性'
+        ordering = ('-create_time',)

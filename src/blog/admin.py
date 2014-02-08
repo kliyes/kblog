@@ -5,7 +5,7 @@
 #
 #
 from django.contrib import admin
-from blog.models import Blog
+from blog.models import Blog, Links, ISays
 from django.contrib.sessions.models import Session
 
 
@@ -30,3 +30,5 @@ class BlogAdmin(admin.ModelAdmin):
 #        return super(BlogAdmin, self).response_add(request, obj, post_url_continue)
 
 admin.site.register(Blog, BlogAdmin)
+admin.site.register(Links)
+admin.site.register(ISays)

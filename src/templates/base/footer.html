@@ -5,9 +5,9 @@
 	</p>
 	<p>
 		基情链接：
-		<a target="_blank" href="http://www.dannysite.com">DannySite</a> | 
-		<a target="_blank" href="http://www.yanduren.com">盐都人</a> | 
-		<a target="_blank" href="http://www.isnail.info">Isnail</a>
+		{% for link in links %}
+			<a target="_blank" href="{{ link.url }}">{{ link.alias }}</a>&nbsp;
+		{% endfor %}
 	</p>
 </div>
 <!-- end #footer -->

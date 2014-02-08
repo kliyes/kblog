@@ -131,6 +131,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 
     "blog.context_processors.tags_and_cates",
     "blog.context_processors.signature_and_words",
+    "blog.context_processors.links",
 )
 
 INSTALLED_APPS = (
