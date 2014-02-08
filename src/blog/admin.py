@@ -25,8 +25,8 @@ class BlogAdmin(admin.ModelAdmin):
         self.message_user(request, u'%s篇文章正式发布' % rows_updated)
     make_pub.short_description = u'正式发布'
 
-    def response_add(self, request, obj, post_url_continue=None):
-        Session.objects.all().delete()
-        return super(BlogAdmin, self).response_add(request, obj, post_url_continue)
+#    def response_add(self, request, obj, post_url_continue=None):
+#        Session.objects.all().delete()
+#        return super(BlogAdmin, self).response_add(request, obj, post_url_continue)
 
 admin.site.register(Blog, BlogAdmin)
