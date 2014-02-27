@@ -11,7 +11,7 @@ from core.managers import BaseManager
 
 class TagManager(BaseManager):
     def used(self):
-        return [tag for tag in self.all() if tag.used_count() > 0][:15]
+        return [tag for tag in self.all() if tag.used_count() > 0][:4]
 
 
 class Tag(BaseModel):
@@ -37,7 +37,7 @@ class Tag(BaseModel):
 
 class CateManager(BaseManager):
     def used(self):
-        return [cate for cate in self.all() if cate.used_count() > 0][:10]
+        return [cate for cate in self.all() if cate.used_count() > 0][:5]
 
 
 class Category(BaseModel):

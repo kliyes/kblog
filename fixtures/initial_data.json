@@ -1,0 +1,7 @@
+[
+	{"pk": 1, "model": "tags.category", "fields": {"text": "技术开发", "create_time": "2014-02-27"}},
+	{"pk": 2, "model": "tags.category", "fields": {"text": "项目管理", "create_time": "2014-02-27"}},
+	{"pk": 3, "model": "tags.category", "fields": {"text": "生活杂记", "create_time": "2014-02-27"}},
+	{"pk": 4, "model": "tags.category", "fields": {"text": "个人推荐", "create_time": "2014-02-27"}},
+	{"pk": 5, "model": "tags.category", "fields": {"text": "好文收藏", "create_time": "2014-02-27"}}
+]

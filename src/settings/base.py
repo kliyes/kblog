@@ -156,6 +156,10 @@ INSTALLED_APPS = (
     'comment',
 )
 
+FIXTURE_DIRS = [
+    os.path.join(os.path.dirname(__file__), '../..', 'fixtures').replace('\\','/'),
+]
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

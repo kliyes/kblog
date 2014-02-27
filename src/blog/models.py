@@ -51,13 +51,3 @@ class Links(BaseModel):
     class Meta:
         verbose_name = u'友情链接'
         verbose_name_plural = u'友情链接'
-
-
-class ISays(BaseModel):
-    sig = models.CharField(u'签名', max_length=256)
-    words = models.CharField(u'说说', max_length=1024)
-
-    class Meta:
-        verbose_name = u'个性'
-        verbose_name_plural = u'个性'
-        ordering = ('-create_time',)

@@ -5,7 +5,7 @@
 #
 #
 from django.contrib import admin
-from blog.models import Blog, Links, ISays
+from blog.models import Blog, Links
 from django.contrib.sessions.models import Session
 
 
@@ -29,6 +29,19 @@ class BlogAdmin(admin.ModelAdmin):
 #        Session.objects.all().delete()
 #        return super(BlogAdmin, self).response_add(request, obj, post_url_continue)
 
+
+class LinksAdmin(admin.ModelAdmin):
+    list_display = ['url', 'available']
+    actions = ['make_unavailable', 'make_available']
+
+    def make_unavailable(self, request, queryset):
+        queryset.update(available=False)
+    make_unavailable.short_description = u'置为无效'
+
+    def make_available(self, request, queryset):
+        queryset.update(available=True)
+    make_available.short_description = u'置为有效'
+    
+
 admin.site.register(Blog, BlogAdmin)
-admin.site.register(Links)
-admin.site.register(ISays)
+admin.site.register(Links, LinksAdmin)
