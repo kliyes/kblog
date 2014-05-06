@@ -53,7 +53,8 @@ USE_I18N = True
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
-USE_L10N = True
+USE_L10N = False
+DATETIME_FORMAT = 'Y-m-d H:i:s'
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
@@ -228,3 +229,5 @@ APP_LABEL_LOCAL = {'blog': u'博客', 'sites': u'站点', 'tags': u'标签和分
 
 SIG = u"今天天气不错, 适合运动!"
 WORDS = u"做有意义的事情, 让生活过的更充实。"
+
+ATTACHMENT_FOLDER = 'attachments/'

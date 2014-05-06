@@ -5,8 +5,12 @@
 #
 #
 from django.contrib import admin
-from blog.models import Blog, Links
+from blog.models import Blog, Links, Attachment
 from django.contrib.sessions.models import Session
+
+
+class AttachmentInline(admin.TabularInline):
+    model = Attachment
 
 
 class BlogAdmin(admin.ModelAdmin):
@@ -14,6 +18,7 @@ class BlogAdmin(admin.ModelAdmin):
     actions = ['make_draft', 'make_pub']
     list_filter = ['cate', 'tags']
     filter_horizontal = ('tags',)
+    inlines = [AttachmentInline]
 
     def make_draft(self, request, queryset):
         rows_updated = queryset.update(is_draft=True)
@@ -41,7 +46,7 @@ class LinksAdmin(admin.ModelAdmin):
     def make_available(self, request, queryset):
         queryset.update(available=True)
     make_available.short_description = u'置为有效'
-    
+
 
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(Links, LinksAdmin)

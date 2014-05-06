@@ -4,10 +4,11 @@
 # Created on 2013-11-6, by Tom
 #
 #
-from core.models import BaseModel
 from django.db import models
+
+import settings
+from core.models import BaseModel
 from ckeditor.fields import RichTextField
-from core.managers import BaseManager
 
 
 class Blog(BaseModel):
@@ -41,6 +42,17 @@ class Blog(BaseModel):
         获取某博客的评论列表
         """
         return self.comment_set.all()
+
+
+class Attachment(BaseModel):
+    blog = models.ForeignKey(Blog, verbose_name=u'博客', null=True, blank=True)
+    name = models.CharField(u'名称', max_length=32)
+    file = models.FileField(u'附件文件', upload_to=settings.ATTACHMENT_FOLDER)
+    download_count = models.IntegerField(u'下载次数', default=0)
+
+    class Meta:
+        verbose_name = u'附件'
+        verbose_name_plural = u'附件'
 
 
 class Links(BaseModel):

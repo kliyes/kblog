@@ -4,13 +4,14 @@
 # Created on 2013-11-6, by Tom
 #
 #
-from blog.models import Blog
+from blog.models import Blog, Attachment
 from core.views import render_and_response
 from django.http import Http404
 from tags.models import Tag, Category
 from django.db.models.query_utils import Q
 from comment.forms import CommentForm
 from utils import pages
+from django.http.response import HttpResponseRedirect
 
 
 def _get_data_list(paging_key, k=0):
@@ -98,3 +99,15 @@ def filter_by(request, by, id):
                                                                 id))
     else:
         raise Http404
+
+
+def download_attachment(request, id):
+    """
+    下载附件
+    """
+    attachment = Attachment.objects.get_by_id(id)
+    if attachment is None:
+        raise Http404
+    attachment.download_count += 1
+    attachment.save()
+    return HttpResponseRedirect(attachment.file.url)

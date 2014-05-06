@@ -21,8 +21,15 @@
             <div class="entry">
                 <p>{{ blog.content|safe }}</p>
                 {% if blog.source %}
-                <p>参考：{{ blog.source|urlize|url_target_blank }}</p>
+                	<p>参考：</p>
+                	<p>{{ blog.source|urlize|url_target_blank }}</p>
                 {% endif %}
+                {% ifnotequal blog.attachment_set.count 0 %}
+                	<p>附件：</p>
+                	{% for a in blog.attachment_set.all %}
+                		<p><a target="_blank" href="{% url 'blog_attachment_download' a.id %}">{{ a.name }}</a>（{{ a.download_count }}次下载）</p>
+                	{% endfor %}
+                {% endifnotequal %}
 			</div>
         </div>
         {% include 'comment/cmt_list.html' %}
