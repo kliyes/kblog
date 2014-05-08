@@ -16,3 +16,7 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
         ordering = ('-create_time',)
+
+
+class Config(models.Model):
+    pass

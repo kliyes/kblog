@@ -231,3 +231,5 @@ SIG = u"今天天气不错, 适合运动!"
 WORDS = u"做有意义的事情, 让生活过的更充实。"
 
 ATTACHMENT_FOLDER = 'attachments/'
+
+ALLOW_TAJS = True
