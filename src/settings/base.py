@@ -119,12 +119,10 @@ ROOT_URLCONF = 'urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'wsgi.application'
 
-TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), '../', 'templates').replace('\\','/'),
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
+# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+# Always use forward slashes, even on Windows.
+# Don't forget to use absolute paths, not relative paths.
+TEMPLATE_DIRS = os.path.join(os.path.dirname(__file__), '../', 'themes/templates_2').replace('\\','/'),
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     "django.core.context_processors.request",
@@ -225,11 +223,13 @@ CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
 CAPTCHA_NOISE_FUNCTIONS = None
 
 APP_LABEL_LOCAL = {'blog': u'博客', 'sites': u'站点', 'tags': u'标签和分类',
-                   'auth': u'用户和组', 'comment': u'评论'}
+                   'auth': u'用户和组', 'comment': u'评论', 'core': u'个性化'}
 
 SIG = u"今天天气不错, 适合运动!"
 WORDS = u"做有意义的事情, 让生活过的更充实。"
 
 ATTACHMENT_FOLDER = 'attachments/'
+
+THEME_PREVIEW_FOLDER = 'previews/'
 
 ALLOW_TAJS = True

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+Version     : 1.0
+Released    : 20100704
+
+Sites Owner : Kliyes
+Email       : jingyang.tom@qq.com
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<title>{% block page_title %}{% endblock %} - kliyes.com</title>
+
+{% block base_css %}
+<link href="{{STATIC_URL}}base/css/base_3.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="{{STATIC_URL}}syntaxhighlighter/css/shCore.css" type="text/css" rel="stylesheet">
+<link href="{{STATIC_URL}}syntaxhighlighter/css/shThemeDefault.css" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block single_css %}{% endblock %}
+{% if ALLOW_TAJS %}
+<!-- tencent statistic -->
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=25370142" charset="UTF-8"></script>
+{% endif %}
+</head>
+
+<body>
+	<div id="wrapper">
+		{% block header_base %}
+			{% block header %} {% include "base/header.html" %} {% endblock %}
+		{% endblock %}
+	
+		<div id="page">
+			{% block content_base %} {% endblock %}
+			{% block sidebar_base %} {% include "base/sidebar.html" %} {% endblock %}
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+	
+	</div>
+	{% block footer_base %}
+		{% block footer %} {% include "base/footer.html" %} {% endblock %}
+	{% endblock %}
+	
+	{% block base_js %}
+		<script type="text/javascript" src="{{STATIC_URL}}base/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="{{STATIC_URL}}base/js/secure.js"></script>
+		<script src="{{STATIC_URL}}syntaxhighlighter/js/XRegExp.js" type="text/javascript"></script>
+		<script src="{{STATIC_URL}}syntaxhighlighter/js/shCore.js" type="text/javascript"></script>
+		<script src="{{STATIC_URL}}syntaxhighlighter/js/shAutoloader.js" type="text/javascript"></script>
+		<script src="{{STATIC_URL}}base/js/syntaxhighlighter_autoloads.js" type="text/javascript"></script>
+	{% endblock %}
+	{% block single_js %}{% endblock %}
+</body>
+</html>

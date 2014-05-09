@@ -6,6 +6,7 @@
 #
 from django.db import models
 from core.managers import BaseManager
+import settings
 
 
 class BaseModel(models.Model):
@@ -18,5 +19,12 @@ class BaseModel(models.Model):
         ordering = ('-create_time',)
 
 
-class Config(models.Model):
-    pass
+class Themes(BaseModel):
+    name = models.CharField(u'风格名称', max_length=64)
+    preview = models.ImageField(u'预览图', upload_to=settings.THEME_PREVIEW_FOLDER)
+    templates_id = models.CharField(u'模板id', max_length=4)
+    is_valid = models.BooleanField(u'生效', default=False)
+
+    class Meta:
+        verbose_name = u'主题风格'
+        verbose_name_plural = u'主题风格'
