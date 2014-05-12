@@ -122,7 +122,6 @@ WSGI_APPLICATION = 'wsgi.application'
 # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
 # Always use forward slashes, even on Windows.
 # Don't forget to use absolute paths, not relative paths.
-TEMPLATE_DIRS = os.path.join(os.path.dirname(__file__), '../', 'themes/templates_2').replace('\\','/'),
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     "django.core.context_processors.request",
@@ -154,6 +153,9 @@ INSTALLED_APPS = (
     'tags',
     'comment',
 )
+
+THEME_DIRS = 'themes/templates_1'
+TEMPLATE_DIRS = os.path.join(os.path.dirname(__file__), '../', THEME_DIRS).replace('\\','/'),
 
 FIXTURE_DIRS = [
     os.path.join(os.path.dirname(__file__), '../..', 'fixtures').replace('\\','/'),
