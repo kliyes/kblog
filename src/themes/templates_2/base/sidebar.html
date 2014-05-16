@@ -1,4 +1,4 @@
-<div id="sidebar">
+<div id="sidebar" class="sidebar" >
 	<ul>
 		<li>
 			<div id="search" >
@@ -12,40 +12,19 @@
 			<div style="clear: both;">&nbsp;</div>
 		</li>
 		<li>
-			<h2>Aliquam tempus</h2>
-			<p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>
-		</li>
-		<li>
 			<h2>Categories</h2>
 			<ul>
-				<li><a href="#">Aliquam libero</a></li>
-				<li><a href="#">Consectetuer adipiscing elit</a></li>
-				<li><a href="#">Metus aliquam pellentesque</a></li>
-				<li><a href="#">Suspendisse iaculis mauris</a></li>
-				<li><a href="#">Urnanet non molestie semper</a></li>
-				<li><a href="#">Proin gravida orci porttitor</a></li>
+			    {% for cate in cates %}
+				    <li><a href="{% url 'blog_filter' 'cate' cate.id %}">{{ cate.text }} ({{ cate.used_count }}) </a></li>
+				{% endfor %}
 			</ul>
 		</li>
 		<li>
-			<h2>Blogroll</h2>
+			<h2>Tags</h2>
 			<ul>
-				<li><a href="#">Aliquam libero</a></li>
-				<li><a href="#">Consectetuer adipiscing elit</a></li>
-				<li><a href="#">Metus aliquam pellentesque</a></li>
-				<li><a href="#">Suspendisse iaculis mauris</a></li>
-				<li><a href="#">Urnanet non molestie semper</a></li>
-				<li><a href="#">Proin gravida orci porttitor</a></li>
-			</ul>
-		</li>
-		<li>
-			<h2>Archives</h2>
-			<ul>
-				<li><a href="#">Aliquam libero</a></li>
-				<li><a href="#">Consectetuer adipiscing elit</a></li>
-				<li><a href="#">Metus aliquam pellentesque</a></li>
-				<li><a href="#">Suspendisse iaculis mauris</a></li>
-				<li><a href="#">Urnanet non molestie semper</a></li>
-				<li><a href="#">Proin gravida orci porttitor</a></li>
+                {% for tag in tags %}
+                   <li><a href="{% url 'blog_filter' 'tag' tag.id %}">{{ tag.text }} ({{ tag.used_count }}) </a></li>
+                {% endfor %}
 			</ul>
 		</li>
 	</ul>

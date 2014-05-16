@@ -1,0 +1,18 @@
+<div>
+	<a href="#cmt"></a>
+	<h3>评论 ({{ blog.count_comments }})</h3>
+	<br />
+	{% for comment in blog.get_comments %}
+		{% if comment.name %}
+			<a href="javascript:void(0)" onclick="reply('{{ comment.name }}')">
+				{{ comment.name }}
+			</a>
+		{% else %}
+			<a href="javascript:void(0)" onclick="reply('{{ comment.contact }}')">
+				{{ comment.contact }}
+			</a>
+		{% endif %}
+		({{ comment.create_time|date:"Y/n/j H:i" }})<br />
+		{{ comment.text }}<br /><hr />
+	{% endfor %}
+</div>

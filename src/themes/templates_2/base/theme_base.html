@@ -35,8 +35,10 @@ Email       : jingyang.tom@qq.com
 		{% endblock %}
 	
 		<div id="page">
-			{% block content_base %} {% endblock %}
-			{% block sidebar_base %} {% include "base/sidebar.html" %} {% endblock %}
+				{% block content_base %} {% endblock %}
+				<div id="tmp">
+					{% block sidebar_base %} {% include "base/sidebar.html" %} {% endblock %}
+				</div>
 			<div style="clear: both;">&nbsp;</div>
 		</div>
 
@@ -52,6 +54,24 @@ Email       : jingyang.tom@qq.com
 		<script src="{{STATIC_URL}}syntaxhighlighter/js/shCore.js" type="text/javascript"></script>
 		<script src="{{STATIC_URL}}syntaxhighlighter/js/shAutoloader.js" type="text/javascript"></script>
 		<script src="{{STATIC_URL}}base/js/syntaxhighlighter_autoloads.js" type="text/javascript"></script>
+		<script>
+			$(function () {   
+				if ($(".sidebar").length > 0) {
+					var offset = $(".sidebar").offset();
+					console.log(offset);
+					$(window).scroll(function () {   
+						var scrollTop = $(window).scrollTop();
+						console.log(scrollTop);
+						if (offset.top < scrollTop){
+							$(".sidebar").css("top",10).addClass("fixed");
+						}   
+						else{
+							$(".sidebar").removeClass("fixed");
+						}   
+					});   
+				}  
+			});
+		</script>
 	{% endblock %}
 	{% block single_js %}{% endblock %}
 </body>

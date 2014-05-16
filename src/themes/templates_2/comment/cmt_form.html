@@ -1,0 +1,20 @@
+{% load widget_tweaks %}
+
+<div id="cmt">
+	<form action="{% url 'post_comment' blog.id %}" method='post'>
+		{% csrf_token %}
+		{{ form.contact|attr:"placeholder:您的联系方式" }}
+		{{ form.errors.contact }}
+		<div class="space"></div>
+		{{ form.name|attr:"placeholder:怎么称呼？" }}
+		{{ form.errors.name }}
+		<div class="space"></div>
+		{{ form.text|attr:"placeholder:您想说什么？" }}
+		{{ form.errors.text }}
+		<div class="space"></div>
+		{{ form.captcha|attr:"placeholder:计算结果"}}
+		{{ form.errors.captcha }}
+		<div class="space"></div>
+		<a onclick="$(this).parent().submit();" href="javascript:void(0);">提交</a>
+	</form>
+</div>

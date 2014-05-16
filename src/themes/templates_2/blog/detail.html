@@ -1,0 +1,60 @@
+{% extends "base/theme_base.html" %}
+
+{% load filters %}
+
+{% block page_title %} {{ blog.title }} {% endblock %}
+
+{% block content_base %}
+    <div id="content">
+        <div class="post">
+            <h2 class="title"><a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a></h2>
+            <p class="meta">
+				<span class="date">
+					{{ blog.update_time|date:"Y年n月j日 H:i" }}
+				</span>
+				<span class="posted">
+					Posted by <a href="">{{ blog.author }}</a>
+				</span>
+            </p>
+        	<p>
+        		{% if blog.cate %}
+					<a href="{% url 'blog_filter' 'cate' blog.cate_id %}">{{ blog.cate.text }}</a> &nbsp;&bull;&nbsp; 
+				{% endif %}
+				{% for tag in blog.tags.all %}
+					<a href="{% url 'blog_filter' 'tag' tag.id %}">{{ tag.text }}</a>
+				{% endfor %}
+			</p>
+            <div class="entry">
+                <p>{{ blog.content|safe }}</p>
+                {% if blog.source %}
+                	<p>参考：</p>
+                	<p>{{ blog.source|urlize|url_target_blank }}</p>
+                {% endif %}
+                {% ifnotequal blog.attachment_set.count 0 %}
+                	<p>附件：</p>
+                	{% for a in blog.attachment_set.all %}
+                		<p><a target="_blank" href="{% url 'blog_attachment_download' a.id %}">{{ a.name }}</a>（{{ a.download_count }}次下载）</p>
+                	{% endfor %}
+                {% endifnotequal %}
+			</div>
+        </div>
+        {% include 'comment/cmt_list.html' %}
+		{% include 'comment/cmt_form.html' %}
+	</div>
+{% endblock %}
+
+{% block single_js %}
+<script type="text/javascript">  
+	function reply(t){
+		$("#id_text").html('回复 '+t+'： ');
+	}
+
+    $('.captcha').click(function(){ //点击图片刷新  
+        $.get("{% url 'refresh_captcha' %}", function(result){  
+            $('.captcha').attr("src", result);  
+            $('#id_captcha_0').attr("value", result.split('/')[-1]);  
+        });  
+    return false;  
+});  
+</script>  
+{% endblock %}
