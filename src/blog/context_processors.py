@@ -19,3 +19,7 @@ def signature_and_words(request):
 
 def links(request):
     return {'links': Links.objects.filter(available=True)}
+
+
+def allow_tajs(request):
+    return {'allow_tajs': settings.ALLOW_TAJS}

@@ -22,10 +22,6 @@ Email       : jingyang.tom@qq.com
 <link href="{{STATIC_URL}}syntaxhighlighter/css/shThemeDefault.css" type="text/css" rel="stylesheet">
 {% endblock %}
 {% block single_css %}{% endblock %}
-{% if ALLOW_TAJS %}
-<!-- tencent statistic -->
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=25370142" charset="UTF-8"></script>
-{% endif %}
 </head>
 
 <body>
@@ -72,6 +68,10 @@ Email       : jingyang.tom@qq.com
 				}  
 			});
 		</script>
+		{% if ALLOW_TAJS %}
+		<!-- tencent statistic -->
+		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=25370142" charset="UTF-8"></script>
+		{% endif %}
 	{% endblock %}
 	{% block single_js %}{% endblock %}
 </body>
