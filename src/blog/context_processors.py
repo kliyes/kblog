@@ -22,4 +22,4 @@ def links(request):
 
 
 def allow_tajs(request):
-    return {'allow_tajs': settings.ALLOW_TAJS}
+    return {'ALLOW_TAJS': settings.ALLOW_TAJS}
