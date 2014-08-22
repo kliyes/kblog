@@ -9,7 +9,7 @@ from django.core.paginator import Paginator, InvalidPage
 
 AFTER_RANGE_NUM = 6
 BEFORE_RANGE_NUM = 6
-DEFAULT_PAGE_SIZE = 10
+DEFAULT_PAGE_SIZE = 1
 
 
 def set_paging(request, paging_key, data_list, page_size=DEFAULT_PAGE_SIZE):

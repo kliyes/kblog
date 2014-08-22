@@ -1,0 +1,11 @@
+{% extends "base/theme_base.html" %}
+
+{% block page_title %} 首页 {% endblock %}
+
+{% block single_css %}
+	<link href="{{ STATIC_URL }}base/css/blog-home.css" rel="stylesheet">
+{% endblock %}
+
+{% block body_base %}
+	{% include "blog/list.html" %}
+{% endblock %}

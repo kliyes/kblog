@@ -1,0 +1,28 @@
+{% ifnotequal page_items.paginator.num_pages 1 %}
+	<ul class="pager">
+		{% if page_items.has_previous %}
+		    <li class="previous">
+		    	{% if sk == 'all' %}
+					<a href="{% url 'home' %}?p={{ page_items.previous_page_number }}">
+				{% elif sk == 'search' %}
+					<a href="{% url 'blog_search' %}?k={{ k }}&p={{ page_items.previous_page_number }}">
+				{% else %}
+					<a href="{% url 'blog_filter' sk k %}?p={{ page_items.previous_page_number }}">
+				{% endif %}
+	        	&larr; 上一页</a>
+		    </li>
+	    {% endif %}
+	    {% if page_items.has_next %}
+		    <li class="next">
+		        {% if sk == 'all' %}
+					<a href="{% url 'home' %}?p={{ page_items.next_page_number }}">
+				{% elif sk == 'search' %}
+					<a href="{% url 'blog_search' %}?k={{ k }}&p={{ page_items.next_page_number }}">
+				{% else %}
+					<a href="{% url 'blog_filter' sk k %}?p={{ page_items.next_page_number }}">
+				{% endif %}
+		        下一页 &rarr;</a>
+		    </li>
+	    {% endif %}
+	</ul>
+{% endifnotequal %}

@@ -1,0 +1,82 @@
+{% extends "base/theme_base.html" %}
+
+{% load filters %}
+
+{% block page_title %} {{ blog.title }} {% endblock %}
+
+{% block single_css %}
+	<link href="{{ STATIC_URL }}base/css/blog-post.css" rel="stylesheet">
+{% endblock %}
+
+{% block body_base %}
+    <!-- Blog Post Content Column -->
+    <div class="col-md-9">
+
+        <!-- Blog Post -->
+
+        <!-- Title -->
+        <h1>{{ blog.title }}</h1>
+
+        <!-- Date/Time -->
+        <p><span class="glyphicon glyphicon-time"></span> 发布于 {{ blog.create_time }}</p>
+
+        <hr>
+
+        <!-- Post Content -->
+        <p>{{ blog.content|safe }}</p>
+
+        <hr>
+
+        <!-- Blog Comments -->
+
+		{% include "comment/cmt_form.html" %}
+
+        <hr>
+
+        <!-- Posted Comments -->
+
+		{% include "comment/cmt_list.html" %}
+
+    </div>
+{% endblock %}
+
+{% block single_js %}
+<script type="text/javascript">
+	function comment(){
+		var c = $("#id_contact");
+		var t = $("#id_text");
+		var a = $("#id_captcha_1");
+		if(c.val() == "" || c.val() == null){
+			c.parent().attr("class", "form-group has-error");
+			c.attr("placeholder", "请留下你的联系方式，便于交流讨论");
+			c.focus();
+			return false;
+		}
+		if(t.val() == "" || t.val() == null){
+			t.parent().attr("class", "form-group has-error");
+			t.attr("placeholder", "请写下评论内容");
+			t.focus();
+			return false;
+		}
+		if(a.val() == "" || a.val() == null){
+			a.parent().attr("class", "form-group has-error");
+			a.attr("placeholder", "请计算");
+			a.focus();
+			return false;
+		}
+		$("#cmt_form").submit();
+	}
+
+	function reply(t){
+		$("#id_text").html('回复 '+t+'： ');
+	}
+
+    $('.captcha').click(function(){ //点击图片刷新  
+        $.get("{% url 'refresh_captcha' %}", function(result){  
+            $('.captcha').attr("src", result);  
+            $('#id_captcha_0').attr("value", result.split('/')[-1]);  
+        });  
+    return false;  
+});  
+</script>  
+{% endblock %}

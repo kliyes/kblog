@@ -1,0 +1,15 @@
+<!-- Footer -->
+<footer>
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="text-center">Copyright &copy; Kliyes.com 2014</p>
+            <p class="text-center">友情链接：
+				{% for link in links %}
+					<a target="_blank" href="{{ link.url }}">{{ link.alias }}</a>&nbsp;
+				{% endfor %}
+			</p>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</footer>

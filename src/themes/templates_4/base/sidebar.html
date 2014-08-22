@@ -1,0 +1,49 @@
+<!-- Blog Sidebar Widgets Column -->
+<div class="col-md-3 sidebar-nav-fixed">
+
+    <!-- Blog Search Well -->
+    <div class="well">
+        <h4>SEARCH</h4>
+    	<form method="get" action="{% url 'blog_search' %}">
+	        <div class="input-group">
+	            <input type="text" class="form-control" name="k" id="search-text" placeholder="标题、内容...">
+	            <span class="input-group-btn">
+	                <button class="btn btn-default" type="submit">
+	                    <span class="glyphicon glyphicon-search"></span>
+	            	</button>
+	            </span>
+	        </div>
+        </form>
+        <!-- /.input-group -->
+    </div>
+
+    <!-- Blog Categories Well -->
+    <div class="well">
+        <h4>CATEGORIES</h4>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="list-unstyled">
+                    {% for cate in cates %}
+				    	<li><a href="{% url 'blog_filter' 'cate' cate.id %}">{{ cate.text }} ({{ cate.used_count }}) </a></li>
+					{% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+
+    <!-- Side Widget Well -->
+    <div class="well">
+        <h4>TAGS</h4>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="list-unstyled">
+                    {% for tag in tags %}
+                   <li><a href="{% url 'blog_filter' 'tag' tag.id %}">{{ tag.text }} ({{ tag.used_count }}) </a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

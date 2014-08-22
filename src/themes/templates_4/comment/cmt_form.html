@@ -1,0 +1,24 @@
+{% load widget_tweaks %}
+
+<!-- Comments Form -->
+<div class="well">
+    <h4>你怎么看？</h4>
+    <form id="cmt_form" role="form" action="{% url 'post_comment' blog.id %}" method="post">
+    	{% csrf_token %}
+        <div class="form-group">
+        	<div class="form-group">
+    			{{ form.contact|attr:"placeholder:你的联系方式"|attr:"class:form-control"|attr:"style:width:50%" }}
+    		</div>
+    		<div class="form-group">
+    			{{ form.name|attr:"placeholder:怎么称呼？"|attr:"class:form-control"|attr:"style:width:50%" }}
+    		</div>
+    		<div class="form-group">
+    			{{ form.text|attr:"placeholder:你想说什么？"|attr:"class:form-control"|attr:"rows:5"|attr:"style:resize:none" }}
+    		</div>
+    		<div class="from-group">
+    			{{ form.captcha|attr:"placeholder:计算结果"|attr:"class:form-control"|attr:"style:width:30%;display:inline-block"}}
+        	</div>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="comment()">评论</button>
+    </form>
+</div>
