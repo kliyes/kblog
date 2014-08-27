@@ -2,12 +2,13 @@
 <footer>
     <div class="row">
         <div class="col-lg-12">
-            <p class="text-center">Copyright &copy; Kliyes.com 2014</p>
-            <p class="text-center">友情链接：
+            <p class="text-center"><span class="glyphicon glyphicon-link"></span> 友情链接
 				{% for link in links %}
 					<a target="_blank" href="{{ link.url }}">{{ link.alias }}</a>&nbsp;
 				{% endfor %}
 			</p>
+            <p class="text-center">Copyright &copy; Kliyes.com 2014</p>
+            <p class="text-center">Powerd by <a href="https://www.djangoproject.com/" target="_blank">Django</a>. Designed with <a href="http://v3.bootcss.com/" target="_blank">Bootstrap 3</a></p>
         </div>
         <!-- /.col-lg-12 -->
     </div>

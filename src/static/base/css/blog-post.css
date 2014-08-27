@@ -11,3 +11,10 @@ body {
 footer {
     margin: 50px 0;
 }
+
+.captcha {
+	width: 60px;
+	height: 27px;
+	border-style: solid;
+	cursor: pointer;
+}

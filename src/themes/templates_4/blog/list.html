@@ -3,7 +3,24 @@
 	    <h1>
 	        <a href="{% url 'blog_detail' blog.id %}">{{ blog.title }}</a>
 	    </h1>
-	    <p><span class="glyphicon glyphicon-time"></span> 发布于 {{ blog.create_time }}</p>
+	    <p>
+    		<span class="glyphicon glyphicon-time" title="发布时间"></span> {{ blog.create_time|date:"Y-m-d H:i" }}&nbsp;
+    		{% if blog.cate %}
+    			<span class="glyphicon glyphicon-folder-open" title="分类"></span> <a href="{% url 'blog_filter' 'cate' blog.cate_id %}">{{ blog.cate.text }}</a>
+    			&nbsp;
+    		{% endif %}
+    		{% if blog.tags.all %}
+	    		<span class="glyphicon glyphicon-tags" title="标签"></span>
+				{% for tag in blog.tags.all %}
+					<a href="{% url 'blog_filter' 'tag' tag.id %}">{{ tag.text }}</a>
+				{% endfor %}
+	    		&nbsp;
+    		{% endif %}
+    		<span class="glyphicon glyphicon-comment" title="评论"></span> <a href="{% url 'blog_detail' blog.id %}#cmt">{{ blog.count_comments }}</a>&nbsp;
+    		{% ifnotequal blog.count_attachments 0 %}
+    			<span class="glyphicon glyphicon-paperclip" title="附件"></span> {{ blog.count_attachments }}
+    		{% endifnotequal %}
+        </p>
 	    <hr>
 	    <p>{{ blog.content|safe }}</p>
 	    <hr />
