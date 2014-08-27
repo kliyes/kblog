@@ -48,7 +48,7 @@
         {% ifnotequal blog.attachment_set.count 0 %}
         	<p><span class="glyphicon glyphicon-paperclip"></span> 附件</p>
         	{% for a in blog.attachment_set.all %}
-        		<p><a target="_blank" href="{% url 'blog_attachment_download' a.id %}">{{ a.name }}</a>（{{ a.download_count }}次下载）</p>
+        		<p><span class="glyphicon glyphicon-download"></span> <a target="_blank" href="{% url 'blog_attachment_download' a.id %}">{{ a.name }}</a>（{{ a.download_count }}次下载）</p>
         	{% endfor %}
         {% endifnotequal %}
 
@@ -78,13 +78,13 @@
 		var t = $("#id_text");
 		var a = $("#id_captcha_1");
 		if(c.val() == "" || c.val() == null){
-			c.parent().attr("class", "form-group has-error");
+			c.parent().parent().attr("class", "form-group has-error");
 			c.attr("placeholder", "请留下你的联系方式，便于交流讨论");
 			c.focus();
 			return false;
 		}
 		if(t.val() == "" || t.val() == null){
-			t.parent().attr("class", "form-group has-error");
+			t.parent().parent().attr("class", "form-group has-error");
 			t.attr("placeholder", "请写下评论内容");
 			t.focus();
 			return false;

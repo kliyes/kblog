@@ -1,14 +1,10 @@
 <!-- Comment -->
 <div id="cmt"></div>
 {% for comment in blog.get_comments %}
-	<div class="media">
-	    <div class="media-body">
-	        <h4 class="media-heading">
-	        	<a href="javascript:;" title="点击回复 {{ comment.name }}" onclick="reply('{{ comment.name }}')">{{ comment.name }}</a>
-	            <small>{{ comment.create_time }}</small>
-	        </h4>
-	        {{ comment.text }}
-	    </div>
-	</div>
+    <h4 class="media-heading">
+    	<span class="glyphicon glyphicon-comment"></span> <a href="javascript:;" title="点击回复 {{ comment.name }}" onclick="reply('{{ comment.name }}')">{{ comment.name }}</a>
+        <small>{{ comment.create_time }}</small>
+    </h4>
+    {{ comment.text }}
 	<hr />
 {% endfor %}

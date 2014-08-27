@@ -59,6 +59,13 @@ def home_page(request):
     return render_and_response(request, 'index.html', pager(request, 'all'))
 
 
+def about_me(request):
+    """
+    关于我页面
+    """
+    return render_and_response(request, 'about.html')
+
+
 def detail(request, blog_id):
     """
     博客详情
