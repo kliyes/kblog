@@ -18,3 +18,7 @@ footer {
 	border-style: solid;
 	cursor: pointer;
 }
+
+div.syntaxhighlighter .container:before,div.syntaxhighlighter .container:after {
+    content:none;
+}
