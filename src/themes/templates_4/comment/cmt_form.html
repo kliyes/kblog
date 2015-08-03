@@ -1,0 +1,35 @@
+{% load widget_tweaks %}
+
+<!-- Comments Form -->
+<div class="well">
+    <h4>你怎么看？</h4>
+    <form id="cmt_form" role="form" action="{% url 'post_comment' blog.id %}" method="post">
+    	{% csrf_token %}
+        <div class="form-group">
+        	<div class="form-group">
+        		<div class="input-group">
+	        		<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> </span>
+	    			{{ form.contact|attr:"placeholder:你的联系方式"|attr:"class:form-control"|attr:"style:width:50%" }}
+    			</div>
+    		</div>
+    		<div class="form-group">
+    			<div class="input-group">
+	    			<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </span>
+	    			{{ form.name|attr:"placeholder:怎么称呼？"|attr:"class:form-control"|attr:"style:width:50%" }}
+    			</div>
+    		</div>
+    		<div class="form-group">
+    			<div class="input-group">
+	    			<span class="input-group-addon"><span class="glyphicon glyphicon-comment"></span> </span>
+	    			{{ form.text|attr:"placeholder:你想说什么？"|attr:"class:form-control"|attr:"rows:5"|attr:"style:resize:none" }}
+    			</div>
+    		</div>
+    		<div class="from-group">
+    			{{ form.captcha|attr:"placeholder:计算结果"|attr:"class:form-control"|attr:"style:width:30%;display:inline-block"}}
+        	</div>
+        </div>
+        <button title="感谢你的评论！你的个人信息不会被泄漏, 请放心！" type="button" class="btn btn-primary" onclick="comment()">
+        	<span class="glyphicon glyphicon-send"></span> <b>走一个</b>
+        </button>
+    </form>
+</div>

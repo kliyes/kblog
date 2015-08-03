@@ -43,6 +43,12 @@ class Blog(BaseModel):
         """
         return self.comment_set.all()
 
+    def count_attachments(self):
+        """
+        获取某博客的附件数量
+        """
+        return self.attachment_set.count()
+
 
 class Attachment(BaseModel):
     blog = models.ForeignKey(Blog, verbose_name=u'博客', null=True, blank=True)

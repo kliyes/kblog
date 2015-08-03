@@ -1,1 +1,3 @@
 django-simple-captcha
+django_widget_tweaks
+django_staticfiles

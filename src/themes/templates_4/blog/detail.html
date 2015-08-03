@@ -1,0 +1,130 @@
+{% extends "base/theme_base.html" %}
+
+{% load filters %}
+
+{% block page_title %} {{ blog.title }} {% endblock %}
+
+{% block single_css %}
+	<link href="{{ STATIC_URL }}base/css/blog-post.css" rel="stylesheet">
+{% endblock %}
+
+{% block body_base %}
+    <!-- Blog Post Content Column -->
+    <div class="col-md-9">
+
+        <!-- Blog Post -->
+
+        <!-- Title -->
+        <h1>{{ blog.title }}</h1>
+
+        <!-- Date/Time -->
+        <p>
+    		<span class="glyphicon glyphicon-time" title="发布时间"></span> {{ blog.create_time|date:"Y-m-d H:i" }}&nbsp;
+    		{% if blog.cate %}
+    			<span class="glyphicon glyphicon-folder-open" title="分类"></span> <a href="{% url 'blog_filter' 'cate' blog.cate_id %}">{{ blog.cate.text }}</a>
+    			&nbsp;
+    		{% endif %}
+    		{% if blog.tags.all %}
+	    		<span class="glyphicon glyphicon-tags" title="标签"></span>
+				{% for tag in blog.tags.all %}
+					<a href="{% url 'blog_filter' 'tag' tag.id %}">{{ tag.text }}</a>
+				{% endfor %}
+	    		&nbsp;
+    		{% endif %}
+    		<span class="glyphicon glyphicon-comment" title="评论"></span> <a href="{% url 'blog_detail' blog.id %}#cmt">{{ blog.count_comments }}</a>&nbsp;
+    		{% ifnotequal blog.count_attachments 0 %}
+    			<span class="glyphicon glyphicon-paperclip" title="附件"></span> {{ blog.count_attachments }}
+    		{% endifnotequal %}
+        </p>
+
+        <hr>
+
+        <!-- Post Content -->
+        <p>{{ blog.content|safe }}</p>
+        {% if blog.source %}
+        	<p><span class="glyphicon glyphicon-new-window"></span> 参考 / 出处</p>
+        	<p>{{ blog.source|urlize|url_target_blank }}</p>
+        {% endif %}
+        {% ifnotequal blog.attachment_set.count 0 %}
+        	<p><span class="glyphicon glyphicon-paperclip"></span> 附件</p>
+        	{% for a in blog.attachment_set.all %}
+        		<p><span class="glyphicon glyphicon-download"></span> <a target="_blank" href="{% url 'blog_attachment_download' a.id %}">{{ a.name }}</a>（{{ a.download_count }}次下载）</p>
+        	{% endfor %}
+        {% endifnotequal %}
+
+		<div class="bdsharebuttonbox">
+			<a href="#" class="bds_more" data-cmd="more"></a>
+			<a href="#" class="bds_qzone" data-cmd="qzone"></a>
+			<a href="#" class="bds_tsina" data-cmd="tsina"></a>
+			<a href="#" class="bds_tqq" data-cmd="tqq"></a>
+			<a href="#" class="bds_renren" data-cmd="renren"></a>
+			<a href="#" class="bds_weixin" data-cmd="weixin"></a>
+		</div>
+        <hr>
+
+        <!-- Blog Comments -->
+
+		{% include "comment/cmt_form.html" %}
+
+        <hr>
+
+        <!-- Posted Comments -->
+
+		{% include "comment/cmt_list.html" %}
+
+    </div>
+{% endblock %}
+
+{% block single_js %}
+<script>
+	window._bd_share_config={
+		"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},
+		"share":{},
+		"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},
+		"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}
+	};
+	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $(".captcha").attr("title", "点击换一个");
+	});
+
+	function comment(){
+		var c = $("#id_contact");
+		var t = $("#id_text");
+		var a = $("#id_captcha_1");
+		if(c.val() == "" || c.val() == null){
+			c.parent().parent().attr("class", "form-group has-error");
+			c.attr("placeholder", "请留下你的联系方式，便于交流讨论");
+			c.focus();
+			return false;
+		}
+		if(t.val() == "" || t.val() == null){
+			t.parent().parent().attr("class", "form-group has-error");
+			t.attr("placeholder", "请写下评论内容");
+			t.focus();
+			return false;
+		}
+		if(a.val() == "" || a.val() == null){
+			a.parent().attr("class", "form-group has-error");
+			a.attr("placeholder", "请计算");
+			a.focus();
+			return false;
+		}
+		$("#cmt_form").submit();
+	}
+
+	function reply(t){
+		$("#id_text").html('回复 '+t+'： ');
+	}
+
+    $('.captcha').click(function(){ //点击图片刷新  
+        $.get("{% url 'refresh_captcha' %}", function(result){  
+            $('.captcha').attr("src", result);  
+            $('#id_captcha_0').attr("value", result.split('/')[-1]);  
+        });  
+    return false;  
+});  
+</script>  
+{% endblock %}

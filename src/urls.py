@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'blog.views.home_page', name='home'),
+    url(r'^about/$', 'blog.views.about_me', name='about'),
     url(r'^refresh_captcha$', 'comment.views.refresh_captcha', name='refresh_captcha'),
 
     url(r'^clear_session', 'core.views.clear_session', name='clear_session'),
