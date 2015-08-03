@@ -2,3 +2,4 @@
 /*.pydevproject
 /.settings
 /src/settings/local.py
+venv/
