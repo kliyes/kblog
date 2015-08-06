@@ -12,7 +12,7 @@ Email       : jingyang.tom@qq.com
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-	<title>{% block page_title %}{% endblock %} - kliyes.com</title>
+	<title>{% block page_title %}{% endblock %} - {{ request.get_host }}</title>
 
 	{% block base_css %}
 	<link href="{{ STATIC_URL }}base/css/bootstrap.min.css" rel="stylesheet">
