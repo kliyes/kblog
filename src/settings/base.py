@@ -33,6 +33,8 @@ DATABASES = {
 ALLOWED_HOSTS = [
     'www.kliyes.com',
     'kliyes.com',
+    'www.kliy.es',
+    'kliy.es'
 ]
 
 # Local time zone for this installation. Choices can be found here:
