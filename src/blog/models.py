@@ -29,7 +29,7 @@ class Blog(BaseModel):
     class Meta:
         verbose_name = u'博客'
         verbose_name_plural = u'博客'
-        ordering = ('-update_time',)
+        ordering = ('-create_time',)
 
     def count_comments(self):
         """

@@ -30,7 +30,7 @@ def _get_data_list(paging_key, k=0):
         return Blog.objects.filter(Q(Q(title__contains=k) |
             Q(content__contains=k) |
             Q(cate__text__contains=k) |
-            Q(tags__in=tags)), is_draft=False).distinct().order_by('-update_time')
+            Q(tags__in=tags)), is_draft=False).distinct().order_by('-create_time')
 
     return []
 
