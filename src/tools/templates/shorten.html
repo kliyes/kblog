@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Shorten URL</title>
+	</head>
+	<body>
+		<div>
+			<p><h1><a href="">Shorten URLs</a></h1></p>
+		</div>
+		<hr />
+		<div style="text-align: center;">
+			{% if msg %}
+			<div style="color: red;">
+				{{ msg }}<br />
+			</div>
+			{% endif %}
+			<form action="" method="post">
+				{% csrf_token %}
+				<input type="text" name="url" placeholder="input a long url..." style="width: 500px;" /><br /><br />
+				<input type="text" name="name" placeholder="input a alias name (optional)..." style="width: 500px;" /><br /><br />
+				<input type="submit" value="shorten!" />
+			</form><br />
+			{% if result %}
+				<div>
+					Shorten URL: <a target="_blank" href="{{ result }}">{{ result }}</a>
+				</div>
+			{% endif %}
+		</div>
+	</body>
+</html>

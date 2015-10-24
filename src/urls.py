@@ -10,10 +10,13 @@ urlpatterns = patterns('',
     url(r'^about/$', 'blog.views.about_me', name='about'),
     url(r'^refresh_captcha$', 'comment.views.refresh_captcha', name='refresh_captcha'),
 
+    url(r'^s/(?P<code>\w+)', 'tools.views.redirect', name='redirect'),
+
     url(r'^clear_session', 'core.views.clear_session', name='clear_session'),
 
     url(r'^blog/', include('blog.urls')),
     url(r'^comment/', include('comment.urls')),
+    url(r'^tools/', include('tools.urls')),
     # url(r'^kliyes_blog/', include('kliyes_blog.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

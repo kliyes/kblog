@@ -155,6 +155,7 @@ INSTALLED_APPS = (
     'blog',
     'tags',
     'comment',
+    'tools',
 )
 
 THEME_DIRS = 'themes/templates_1'
