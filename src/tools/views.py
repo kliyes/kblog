@@ -27,6 +27,10 @@ URL_REGEX = re.compile(
 CHAR_RANGE = string.uppercase + string.lowercase + string.digits + '_'
 
 
+def catalog(req):
+    return render_and_response(req, 'catalog.html')
+
+
 def get_short_url(url):
     key = 'kliy.es'
     h = hashlib.md5(key+url).hexdigest()

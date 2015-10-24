@@ -35,6 +35,8 @@ ALLOWED_HOSTS = [
     'kliyes.com',
     'www.kliy.es',
     'kliy.es',
+    'tools.kliy.es',
+    'tools.kliyes.com'
 ]
 
 # Local time zone for this installation. Choices can be found here:

@@ -8,5 +8,6 @@ from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns('',
+                       url(r'^$', 'tools.views.catalog', name='catalog'),
                        url(r'^shorten/$', 'tools.views.shorten', name='shoten_url'),
                        )
