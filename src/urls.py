@@ -10,8 +10,6 @@ urlpatterns = patterns('',
     url(r'^about/$', 'blog.views.about_me', name='about'),
     url(r'^refresh_captcha$', 'comment.views.refresh_captcha', name='refresh_captcha'),
 
-    url(r'^s/(?P<code>\w+)', 'tools.views.redirect', name='redirect'),
-
     url(r'^clear_session', 'core.views.clear_session', name='clear_session'),
 
     url(r'^blog/', include('blog.urls')),
@@ -26,6 +24,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^captcha/', include('captcha.urls')),
+
+    url(r'^(?P<code>\w+)', 'tools.views.redirect', name='redirect'),
 )
 
 if settings.DEBUG:

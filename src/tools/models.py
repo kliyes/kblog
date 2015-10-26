@@ -18,5 +18,5 @@ class ShortLink(BaseModel):
         return self.name or self.code
 
     def get_short_url(self):
-        return 'http://kliy.es/s/' + self.code
+        return 'http://kliy.es/' + self.code
     get_short_url.short_description = 'Short URL'
