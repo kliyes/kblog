@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^blog/', include('blog.urls')),
     url(r'^comment/', include('comment.urls')),
     url(r'^tools/', include('tools.urls')),
+    url(r'^wx/', include('wechat.urls')),
     # url(r'^kliyes_blog/', include('kliyes_blog.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
